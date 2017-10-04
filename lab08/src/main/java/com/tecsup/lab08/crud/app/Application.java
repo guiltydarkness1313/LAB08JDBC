@@ -19,7 +19,7 @@ public class Application {
 		
 		System.out.println("Create .. " + emp);
 
-		dao.update(id, "Paul2", "Pacheco2", (double) 1505,21);
+		dao.update(id, "Paul2", "Pacheco2", (double) 1505,45);
 		
 		emp = dao.findById(id);
 		

@@ -66,7 +66,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				emp.setFirstname(rs.getString(2));
 				emp.setLastname(rs.getString(3));
 				emp.setSalary(rs.getDouble(4));
-				emp.setSalary(rs.getInt(5));
+				emp.setAge(rs.getInt(5));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -169,8 +169,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			pst.setString(1, pFirstname);
 			pst.setString(2, pLastname);
 			pst.setDouble(3, pSalary);
-			pst.setInt(4, id);
-			pst.setInt(5, pAge);
+			pst.setInt(5, id);
+			pst.setInt(4, pAge);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
