@@ -6,19 +6,31 @@ public class Employee implements Serializable{
 
 	private static final long serialVersionUID=1L;
 	private int id;
+	private int age;
 	private String firstname;
 	private String lastname;
 	private double salary;
 	public Employee() {
 		
 	}
-	public Employee(int id, String firstname, String lastname, double salary) {
+	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Employee(int id, int age, String firstname, String lastname, double salary) {
 		super();
 		this.id = id;
+		this.age = age;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.salary = salary;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -48,7 +60,8 @@ public class Employee implements Serializable{
 		return "Employee [id="+id+
 				", firstname="+firstname+
 				", lastname="+lastname+
-				", salary="+salary+"]";
+				", salary="+salary+
+				", age="+age+"]";
 				
 	}
 	

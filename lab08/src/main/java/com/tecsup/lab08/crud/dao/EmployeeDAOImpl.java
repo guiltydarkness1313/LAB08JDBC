@@ -19,7 +19,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		ResultSet rs=null;
 		PreparedStatement pst=null;
 		Connection con=ConnectionDB.getConnection();
-		String stm="Select employee_id, first_name, last_name, salary from employees_2 order by employee_id";
+		String stm="Select employee_id, first_name, last_name, salary, age from employees_2 order by employee_id";
 		ArrayList<Employee> records=new ArrayList<Employee>();
 		
 		try {
@@ -32,6 +32,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				emp.setFirstname(rs.getString(2));
 				emp.setLastname(rs.getString(3));
 				emp.setSalary(rs.getDouble(4));
+				emp.setAge(rs.getInt(5));
 				records.add(emp);
 			}
 		}catch(SQLException e) {
@@ -53,7 +54,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		ResultSet rs=null;
 		PreparedStatement pst=null;
 		Connection con=ConnectionDB.getConnection();
-		String stm="Select employee_id, first_name, last_name, salary from employees_2 where employee_id=?";
+		String stm="Select employee_id, first_name, last_name, salary, age from employees_2 where employee_id=?";
 		Employee emp=new Employee();
 		try {
 			pst=con.prepareStatement(stm);
@@ -65,6 +66,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				emp.setFirstname(rs.getString(2));
 				emp.setLastname(rs.getString(3));
 				emp.setSalary(rs.getDouble(4));
+				emp.setSalary(rs.getInt(5));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -80,7 +82,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public int  create(String pFirstname, String pLastname, Double pSalary) {
+	public int  create(String pFirstname, String pLastname, Double pSalary, int pAge) {
 
 		ResultSet rs = null;
 		PreparedStatement pst = null;
@@ -105,13 +107,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 		
 		
-		String stm2 = "INSERT INTO employees_2 (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY)  VALUES (?,?,?,?)";
+		String stm2 = "INSERT INTO employees_2 (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, AGE)  VALUES (?,?,?,?,?)";
 		try {
 			pst = con.prepareStatement(stm2);
 			pst.setInt(1, idGenerator);
 			pst.setString(2, pFirstname);
 			pst.setString(3, pLastname);
 			pst.setDouble(4, pSalary);
+			pst.setInt(5, pAge);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,17 +159,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 	@Override
-	public void update(int id, String pFirstname, String pLastname, Double pSalary) {
+	public void update(int id, String pFirstname, String pLastname, Double pSalary,int pAge) {
 
 		PreparedStatement pst = null;
 		Connection con = ConnectionDB.getConnection();
-		String stm = "UPDATE EMPLOYEES_2 SET FIRST_NAME=?, LAST_NAME = ?, SALARY = ? WHERE EMPLOYEE_ID = ?";
+		String stm = "UPDATE EMPLOYEES_2 SET FIRST_NAME=?, LAST_NAME = ?, SALARY = ?, AGE=? WHERE EMPLOYEE_ID = ?";
 		try {
 			pst = con.prepareStatement(stm);
 			pst.setString(1, pFirstname);
 			pst.setString(2, pLastname);
 			pst.setDouble(3, pSalary);
 			pst.setInt(4, id);
+			pst.setInt(5, pAge);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

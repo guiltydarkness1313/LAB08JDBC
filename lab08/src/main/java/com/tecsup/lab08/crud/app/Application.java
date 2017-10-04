@@ -13,13 +13,13 @@ public class Application {
 		
 		int id = -1;
 		
-		id = dao.create("Paul", "Pacheco", (double) 1500);
+		id = dao.create("Paul", "Pacheco", (double) 1500,21);
 		
 		Employee emp = dao.findById(id);
 		
 		System.out.println("Create .. " + emp);
 
-		dao.update(id, "Paul2", "Pacheco2", (double) 1505);
+		dao.update(id, "Paul2", "Pacheco2", (double) 1505,21);
 		
 		emp = dao.findById(id);
 		

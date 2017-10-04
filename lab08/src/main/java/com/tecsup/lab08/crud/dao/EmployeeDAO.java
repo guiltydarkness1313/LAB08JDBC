@@ -11,9 +11,9 @@ public interface EmployeeDAO {
 	Employee findById(int id);
 	
 	
-	int create(String pFirstname, String pLastname, Double pSalary);
+	int create(String pFirstname, String pLastname, Double pSalary,int pAge);
 	
 	void delete(int id);
 	
-	void update(int id, String pFirstname, String pLastname, Double pSalary);
+	void update(int id, String pFirstname, String pLastname, Double pSalary,int pAge);
 }
